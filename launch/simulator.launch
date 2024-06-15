@@ -1,0 +1,15 @@
+<launch>
+  <arg name="map" default="example_map"/>
+  <arg name="gui" default="true" />
+  <arg name="teleop" default="true"/>
+
+  <node name="map2stl_node" pkg="racecar_helper" type="map2stl.py" args="$(arg map)" output="screen"/>
+
+  <include file="$(find racecar_gazebo)/launch/racecar.launch">
+    <arg name="world_name" value="$(find racecar_helper)/worlds/map.world"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="teleop" value="$(arg teleop)"/>
+  </include>
+    
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find racecar_helper)/rviz/default.rviz" required="true" output="screen"/>
+</launch>
