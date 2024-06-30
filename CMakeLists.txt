@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 2.8.3)
 project(racecar_helper)
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,14 +8,23 @@ project(racecar_helper)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+include (FindPkgConfig)
+if (PKG_CONFIG_FOUND)
+    pkg_check_modules(GAZEBO gazebo)
+endif()
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+include(FindBoost)
+find_package(Boost ${MIN_BOOST_VERSION} REQUIRED system filesystem regex)
+find_package(Protobuf REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -107,6 +117,7 @@ catkin_package(
 #  LIBRARIES f1tenth_helper
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+  CATKIN_DEPENDS gazebo_msgs message_runtime
 )
 
 ###########
@@ -118,7 +129,10 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
 )
+link_directories(${GAZEBO_LIBRARY_DIRS})
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -134,6 +148,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/f1tenth_helper_node.cpp)
+add_executable(collision_publisher_node src/collision_publisher.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -149,6 +164,10 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(collision_publisher_node
+  ${catkin_LIBRARIES}
+)
+
 
 #############
 ## Install ##
@@ -201,6 +220,7 @@ include_directories(
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
+target_link_libraries(collision_publisher_node ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES} ${PROTOBUF_LIBRARIES} pthread)
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
