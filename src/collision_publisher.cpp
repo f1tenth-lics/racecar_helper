@@ -34,7 +34,7 @@ void forcesCb(ConstContactsPtr &_msg){
                 std_msgs::Bool collide;
                 collide.data = true;
                 pub.publish(collide);
-                ROS_INFO_STREAM("Collision detected, " + entity1 + ":" + entity2);
+//                ROS_INFO_STREAM("Collision detected, " + entity1 + ":" + entity2);
                 return;
             }
         }
