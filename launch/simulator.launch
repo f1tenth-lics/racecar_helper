@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
   <arg name="map" default="example_map"/>
   <arg name="gui" default="true" />
@@ -5,11 +6,40 @@
 
   <node name="map2stl_node" pkg="racecar_helper" type="map2stl.py" args="$(arg map)" output="screen"/>
 
-  <include file="$(find racecar_gazebo)/launch/racecar.launch">
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find racecar_helper)/maps/$(arg map)/$(arg map).yaml" output="screen"/>
+
+  <!-- Gazebo -->
+  <include file="$(find racecar_gazebo)/launch/empty.launch">
     <arg name="world_name" value="$(find racecar_helper)/worlds/map.world"/>
     <arg name="gui" value="$(arg gui)"/>
-    <arg name="teleop" value="$(arg teleop)"/>
   </include>
-    
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find racecar_helper)/rviz/default.rviz" required="true" output="screen"/>
+
+<!--   <include file="$(find racecar_helper)/launch/spawn_racecar.launch"> -->
+<!--     <arg name="robot_name" value="racecar"/> -->
+<!--     <arg name="color" value="blue"/> -->
+<!--     <arg name="init_x" value="0"/> -->
+<!--     <arg name="init_y" value="0"/> -->
+<!--   </include> -->
+
+<!--   <include file="$(find racecar_helper)/launch/spawn_racecar.launch"> -->
+<!--     <arg name="robot_name" value="racecar2"/> -->
+<!--     <arg name="color" value="red"/> -->
+<!--     <arg name="init_x" value="1"/> -->
+<!--     <arg name="init_y" value="0"/> -->
+<!--   </include> -->
+
+  <!-- Static tf from map to /racecar/odom -->
+<!--   <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 /map /racecar/odom 100" /> -->
+
+  <!-- Collision publisher -->
+<!--   <group ns="racecar"> -->
+<!--     <node pkg="racecar_helper" type="collision_publisher_node" name="collision_publisher_node" output="screen"> -->
+<!--       <param name="robot_name" value="racecar" /> -->
+<!--     </node> -->
+<!--   </group> -->
+
+  <!-- RViz -->
+<!--   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find racecar_helper)/rviz/default.rviz" required="true" output="screen"/> -->
+
 </launch>
