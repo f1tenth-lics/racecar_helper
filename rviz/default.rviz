@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 555
   - Class: rviz/Selection
@@ -75,7 +74,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Flat Squares
-      Topic: /racecar/scan
+      Topic: /racecar0/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -90,110 +89,120 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        racecar/base_link:
+        racecar0/base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_bottom_screw_frame:
+        racecar0/camera_bottom_screw_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_color_frame:
+        racecar0/camera_color_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_color_optical_frame:
+        racecar0/camera_color_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_depth_frame:
+        racecar0/camera_depth_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_depth_optical_frame:
+        racecar0/camera_depth_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_left_ir_frame:
+        racecar0/camera_left_ir_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_left_ir_optical_frame:
+        racecar0/camera_left_ir_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        racecar/camera_right_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        racecar/camera_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        racecar/chassis:
+        racecar0/camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/chassis_inertia:
+        racecar0/camera_right_ir_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/imu_link:
+        racecar0/camera_right_ir_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        racecar/laser:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        racecar/left_front_wheel:
+        racecar0/chassis:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/left_rear_wheel:
+        racecar0/chassis_inertia:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        racecar0/imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        racecar0/laser:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/left_steering_hinge:
+        racecar0/left_front_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/right_front_wheel:
+        racecar0/left_rear_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/right_rear_wheel:
+        racecar0/left_steering_hinge:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        racecar/right_steering_hinge:
+        racecar0/right_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        racecar0/right_rear_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        racecar0/right_steering_hinge:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: /racecar/robot_description
+      Robot Description: /racecar0/robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: racecar/odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -217,7 +226,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 18.542797088623047
+      Distance: 38.1978645324707
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -225,17 +234,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 2.7040483951568604
-        Y: 1.34242844581604
-        Z: 1.2716392278671265
+        X: 1.2539435625076294
+        Y: -9.73072338104248
+        Z: 1.8164825439453125
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8603979349136353
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
-      Yaw: 4.3035807609558105
+      Yaw: 4.713585376739502
     Saved: ~
 Window Geometry:
   Displays:
@@ -253,5 +262,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 428
-  Y: 27
+  X: 454
+  Y: 53

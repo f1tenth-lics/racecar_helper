@@ -2,6 +2,7 @@
 <launch>
   <arg name="map" default="example_map"/>
   <arg name="gui" default="true" />
+  <arg name="rviz" default="true"/>
   <arg name="teleop" default="true"/>
 
   <node name="map2stl_node" pkg="racecar_helper" type="map2stl.py" args="$(arg map)" output="screen"/>
@@ -40,6 +41,8 @@
 <!--   </group> -->
 
   <!-- RViz -->
-<!--   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find racecar_helper)/rviz/default.rviz" required="true" output="screen"/> -->
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find racecar_helper)/rviz/default.rviz" required="true" output="screen"/>
+  </group>
 
 </launch>
