@@ -116,6 +116,8 @@ for i, face in enumerate(faces):
 
 # Save to STL file
 output_stl_path = f'{base_path}/models/map/meshes/map.stl'
+# Create folder if it doesn't exist
+os.makedirs(os.path.dirname(output_stl_path), exist_ok=True)
 wall_mesh.save(output_stl_path)
 
 print(f"STL file saved to {output_stl_path}")
